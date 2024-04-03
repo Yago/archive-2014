@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Agrid.css | Yann Gouffon</title>
+    <meta name="description" content="Agrid est un système de grille fluide. Il est léger, facile à utiliser et extrêmement flexible. Tout comme un Twitter Bootstrap, il suffit de définir une structure html de base agrémentée de classe définissant les proportions de vos blocs.
+&lt;div class="container"&gt;
+    &lt;div class="row"&gt;&hellip;">
+    <meta name="keywords" content="yann, gouffon, Yago, Antistatique, frontend, develloper, Swiss, Suisse, designer, eikon, fribourg, lausanne, 3D, web, internet, site, graphic">
+    <meta name="viewport" content="width=device-width">
+
+    <meta property="og:title" content="Agrid.css">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/projects/old/agridcss">
+            <meta property="og:image" content="/content/cover/agridcss.jpg">
+            <meta property="og:site_name" content="Yann Gouffon">
+    <meta property="og:description" content="Agrid est un système de grille fluide. Il est léger, facile à utiliser et extrêmement flexible. Tout comme un Twitter Bootstrap, il suffit de définir une structure html de base agrémentée de classe définissant les proportions de vos blocs.
+&lt;div class="container"&gt;
+    &lt;div class="row"&gt;&hellip;">
+
+    <link rel="stylesheet" href="../../themes/yago/build/css/vendors.css">
+    <link rel="stylesheet" href="../../themes/yago/build/css/yago.css">
+
+    <script type="text/javascript" src="http://use.typekit.net/oyy3kts.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+        <div id="sb-site">
+              <header class="covered-header">
+          <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" id="open-menu" class="navbar-toggle" aria-hidden="true">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">
+                  <img class="yago-dark" src="../../themes/yago/build/img/yago-dark.svg" onerror="this.onerror=null; this.src='/themes/yago/build/img/yago-dark.png'" alt="alt" />
+                  <img class="yago-light" src="../../themes/yago/build/img/yago-light.svg" onerror="this.onerror=null; this.src='/themes/yago/build/img/yago-light.png'" alt="alt" />
+                </a>
+              </div>
+
+              <div class="main-nav navbar-right hidden-xs" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li><a href="../../index.html" title="Home">Home</a></li>
+                  <li class="active"><a href="../../projects.html" title="Projects">Projects</a></li>
+                  <li><a href="../../blog.html" title="Blog">Blog</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+                                  <div class="img-focus"
+                data-focus-x="0"
+                data-focus-y="0"
+                data-image-w="2880"
+                data-image-h="1296">
+                                                      <img src="/content/cover/agridcss.jpg" alt="" />
+                                                </div>
+                    <div class="inset-shadow" aria-hidden="true"></div>
+        </header>
+            
+            <div class="container">
+  <article>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h1>Agrid.css</h1>
+        <div class="tags">
+          <small><em>22nd May 2013</em></small>
+          <span class="text-silver">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+          <small><em>
+            <span class="fa fa-tags"></span>
+                                        <a href="../../tag/projet.html">projet</a>
+                      </em></small>
+        </div>
+        <hr>
+        <p>
+            <p>Agrid est un système de grille fluide. Il est <strong>léger, facile à utiliser et extrêmement flexible</strong>. Tout comme un Twitter Bootstrap, il suffit de définir une structure html de base agrémentée de classe définissant les proportions de vos blocs.</p>
+<pre><code class="language-html">&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="span4"&gt;&lt;/div&gt;
+        &lt;div class="span4"&gt;&lt;/div&gt;
+        &lt;div class="span4 last"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>À partir de cette structure simple et logique, tout est possible !</p>
+<p>Pour ceux qui souhaiteraient aller plus loin, <strong>agrid.less</strong> permet de générer une grille personnalisée en choisissant quelques paramètres. Il est possible de choisir le nombre de colonnes, la taille des gouttières proportionnelle à celles des colonnes et la largeur maximum du conteneur. Avec ces quelques paramètres, la grille s'adaptera parfaitement à tous les besoins.</p>
+<pre><code class="language-less">// CONTROL PANEL
+//=========================================
+
+// Define the number of columns
+@columnNumber : 12;
+
+// You want Gutter ? (yes=1/no=0)
+@gutterExist : 1;
+
+// Define the smallest .span
+@startFrom : 1;
+
+// Define the ratio between column and gutter
+@columnRatio : 1.61803399;
+
+// Define the max-width of your Grid
+@maxWidth : 1140px;
+
+// Define the Media Queries steps
+@limit : 767px;
+@ieLimit : 950px;</code></pre>
+<p>N'hésitez pas à faire un tour sur la page de <a href="http://yago31.github.io/agrid.css/">présentation</a> et à forker le projet <a href="https://github.com/yago31/agrid.css">Github</a></p>
+        </p>
+              </div>
+    </div>
+  </article>
+</div>  
+              <footer>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <hr>                <div class="spacer spacer-xs"></div>
+                <h2 class="h4">Let's keep in touch</h2>
+                <div class="spacer spacer-sm"></div>
+                <a href="https://twitter.com/Yago_0" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </a>
+                <a href="https://github.com/Yago/" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </a>
+                <a href="http://ch.linkedin.com/pub/yann-gouffon/47/9a0/9bb/" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                </a>
+                <a href="http://instagram.com/yago_0" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                </a>
+                <a href="https://plus.google.com/+YannGouffon/" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                </a>
+                <a href="mailto:hello@yago.io" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </a>
+                <div class="spacer spacer-xl"></div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      
+    </div>
+
+    <div class="sb-slidebar sb-right" aria-hidden="true">
+      <ul class="nav navbar-nav">
+        <li><a href="../../index.html" title="Home">Home</a></li>
+        <li class="active"><a href="../../projects.html" title="Projects">Projects</a></li>
+        <li><a href="../../blog.html" title="Blog">Blog</a></li>
+      </ul>
+    </div>
+
+    <script src="../../themes/yago/build/js/vendors.min.js"></script>
+    <script src="../../themes/yago/build/js/main.js"></script>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-41124823-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+    <script type="text/javascript">
+      var FHChat = {product_id: "e62b17d38605"};
+      FHChat.properties={};FHChat.set=function(key,data){this.properties[key]=data};FHChat.customAttributes=[];FHChat.sendCustomAttributes=function(data){this.customAttributes.push(data)};!function(){var a,b;return b=document.createElement("script"),a=document.getElementsByTagName("script")[0],b.src="https://chat-client-js.firehoseapp.com/chat-min.js",b.async=!0,a.parentNode.insertBefore(b,a)}();
+
+      var fchatChecker = setInterval(function(){
+        var $fchat = $('#fchat');
+        if($('#fchat').length > 0){
+          setTimeout(function(){
+            $('#fchat-header-label').html('Envie de discuter ?');
+            $('#fchat-message').attr('placeholder', 'Ton message');
+            $('#welcome-message').html('Pour taper un petit brin de causette. À utiliser sans modération !');
+          }, 500);
+          clearInterval(fchatChecker);
+        }
+      }, 100);
+    </script>
+
+    <script type="text/javascript">
+      (function($){
+        $(document).ready(function(){
+          emojify.setConfig({
+              img_dir          : '/themes/yago/build/img/emoji',
+              ignore_emoticons : true
+          });
+          emojify.run();
+        });
+      }(jQuery));
+    </script>
+      </body>
+</html>

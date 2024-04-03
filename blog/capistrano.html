@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Capistrano | Yann Gouffon</title>
+    <meta name="description" content="Avant, pour mettre mon site en ligne, je devais envoyer mes fichiers via FTP, régler la config en ligne, faire un Dump de ma base de données et la réimporter dans la DB distante, mais ça, c'était avant.
+Il existe plusieurs frameworks de déploiement et Capistrano est surement l'un des plus&hellip;">
+    <meta name="keywords" content="yann, gouffon, Yago, Antistatique, frontend, develloper, Swiss, Suisse, designer, eikon, fribourg, lausanne, 3D, web, internet, site, graphic">
+    <meta name="viewport" content="width=device-width">
+
+    <meta property="og:title" content="Capistrano">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/blog/capistrano">
+            <meta property="og:image" content="/content/cover/capistrano.jpg">
+            <meta property="og:site_name" content="Yann Gouffon">
+    <meta property="og:description" content="Avant, pour mettre mon site en ligne, je devais envoyer mes fichiers via FTP, régler la config en ligne, faire un Dump de ma base de données et la réimporter dans la DB distante, mais ça, c'était avant.
+Il existe plusieurs frameworks de déploiement et Capistrano est surement l'un des plus&hellip;">
+
+    <link rel="stylesheet" href="../themes/yago/build/css/vendors.css">
+    <link rel="stylesheet" href="../themes/yago/build/css/yago.css">
+
+    <script type="text/javascript" src="http://use.typekit.net/oyy3kts.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+        <div id="sb-site">
+              <header class="covered-header">
+          <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" id="open-menu" class="navbar-toggle" aria-hidden="true">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.html">
+                  <img class="yago-dark" src="../themes/yago/build/img/yago-dark.svg" onerror="this.onerror=null; this.src='/themes/yago/build/img/yago-dark.png'" alt="alt" />
+                  <img class="yago-light" src="../themes/yago/build/img/yago-light.svg" onerror="this.onerror=null; this.src='/themes/yago/build/img/yago-light.png'" alt="alt" />
+                </a>
+              </div>
+
+              <div class="main-nav navbar-right hidden-xs" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li><a href="../index.html" title="Home">Home</a></li>
+                  <li><a href="../projects.html" title="Projects">Projects</a></li>
+                  <li class="active"><a href="../blog.html" title="Blog">Blog</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+                                  <div class="img-focus"
+                data-focus-x="0"
+                data-focus-y="0"
+                data-image-w="2880"
+                data-image-h="1296">
+                                                      <img src="/content/cover/capistrano.jpg" alt="" />
+                                                </div>
+                    <div class="inset-shadow" aria-hidden="true"></div>
+        </header>
+            
+            <div class="container">
+  <article>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h1>Capistrano</h1>
+        <div class="tags">
+          <small><em>28th May 2013</em></small>
+          <span class="text-silver">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+          <small><em>
+            <span class="fa fa-tags"></span>
+                                        <a href="../tag/framework.html">framework</a>
+                      </em></small>
+        </div>
+        <hr>
+        <p>
+            <p>Avant, pour mettre mon site en ligne, je devais envoyer mes fichiers via FTP, régler la config en ligne, faire un Dump de ma base de données et la réimporter dans la DB distante, mais ça, c'était avant.</p>
+<p>Il existe plusieurs frameworks de déploiement et <a href="https://github.com/capistrano/capistrano">Capistrano</a> est surement l'un des plus connus. Avec un simple "cap deploy", vos dernières mises à jour seront automatiquement envoyées via SSH sur votre serveur de production. Il nécessite cependant une petite installation, mais rien en comparaison du temps que vous allez gagner.</p>
+<h2>Quelques prérequis</h2>
+<p>Pour utiliser Capistrano, il vous faut :</p>
+<ul>
+<li>Un accès SSH à votre serveur avec votre clef publique</li>
+<li>Une version de Ruby supérieur à 1.3.0
+<pre><code class="language-shell">$ gem -v</code></pre></li>
+<li>L'utilisation de <a href="http://git-scm.com/">Git</a> dans votre projet (pas obligatoire, mais vivement recommandé)</li>
+</ul>
+<h2>Installation</h2>
+<p>Pour installer Capistrano et ses extensions :</p>
+<pre><code class="language-shell">$ gem install capistrano
+$ gem install capistrano-ext
+$ gem install railsless-deploy</code></pre>
+<p>Ensuite, allez dans votre répertoire et lancez Capistrano :</p>
+<pre><code class="language-shell">$ cd path/to/your/directory/
+$ capify .</code></pre>
+<h2>Comment ça fonctionne en fait ?</h2>
+<p>Capistrano ne va pas simplement envoyer vos fichiers sur votre serveur, il va également créer une arborescence destinée à versionner votre site. De ce fait et en cas de problème, Capistrano vous permettra de retourner à la version précédente en une fraction de seconde.</p>
+<p>En soit, la structure est relativement simple. À la racine de votre répertoire, il va créer un répertoire <strong>shared</strong> pour tous les fichiers partagés, un répertoire <strong>releases</strong> pour toutes les versions de votre site et un lien symbolique <strong>current</strong> qui pointera vers la dernière release.</p>
+<pre><code class="language-shell">monSite
+├── current -&gt; /home/monSite/releases/20130527070530
+├── releases
+│   ├── 20130527065508
+│   ├── 20130527065907
+│   └── 20130527070530
+└── shared</code></pre>
+<h2>Le script de déploiement</h2>
+<p>Capistrano n'est qu'un exécuteur. Afin de le faire fonctionner, il faut lui donner une recette. En exécutant la commande "capify .", Capistrano vous a créé un fichier <strong>Capifile</strong> et un répertoire <strong>config</strong> avec <strong>deploy.rb</strong> à l'intérieur. C'est ce dernier qui va donner la recette de votre déploiement à Capistrano.</p>
+<p>Dans ce fichier, vous pouvez absolument tout faire en définissant des paramètres et en exécutant des lignes de commandes dans un ordre défini.</p>
+<h2>Ma méthode</h2>
+<p>Le script que je vais vous présenter est utilisable pour la plupart des CMS PHP, du type Wordpress, utilisant une base de données. Avec quelques ajustements, il peut très bien être utilisé pour un site statique ou que sais-je encore. Donc tout d'abord dans <strong>Capfile</strong> :</p>
+<pre><code class="language-ruby">require 'rubygems'
+require 'railsless-deploy'
+load 'config/deploy.rb' if respond_to?(:namespace)</code></pre>
+<p>Puis dans <strong>deploy.rb</strong>, on commence par définir nos paramètres serveur :</p>
+<pre><code class="language-ruby"># SERVER (exemple user@user.hostingservice.com)
+set :domain,  "user.hostingservice.com"
+set :user,    "user"
+
+# NAME
+set :application, "monApplication"</code></pre>
+<p>Ensuite, on va définir les paramètres liés à notre repository Git :</p>
+<pre><code class="language-ruby"># REPOSITORY (exemple avec un repo Bitbucket)
+set :repository, "git@bitbucket.org:User/application-name.git"
+server "#{domain}", :app, :web, :db, :primary =&gt; true
+set :deploy_via, :copy
+set :copy_exclude, [".git", ".DS_Store"]
+set :scm, :git
+set :branch, "master"</code></pre>
+<p>Puis les paramètres liés au déploiement :</p>
+<pre><code class="language-ruby"># DEPLOY PARAMETERS
+set :deploy_to, "/home/user/webapps/#{application}"
+set :use_sudo, false
+set :git_shallow_clone, 1
+set :keep_releases, 10
+ssh_options[:paranoid] = false</code></pre>
+<p>Et pour finir, les paramètres liés à la base de données :</p>
+<pre><code class="language-ruby"># DATABASE
+set :dump_name, "dump.#{Time.now.strftime '%Y%m%d%H%M%S'}.sql"
+set :dbuser, "remote_user" 
+set :dbhost, "server.hostingservice.com"
+set :dbpassword, "PASSWORD"
+set :application_db, "remote_db_name"
+set :local_db_host, "localhost"
+set :local_db_user, "root"
+set :local_db_password, ""
+set :local_db, "local_db_name"</code></pre>
+<p>Ensuite, on va créer des fonctions de déploiement en commençant par celle qui enverra les fichiers et qui installera votre fichier de config, ici <strong>db.php.dist</strong> qui va remplacer <strong>db.php</strong>.</p>
+<pre><code class="language-ruby">namespace :deploy do
+  desc &lt;&lt;-DESC
+  A macro-task that updates the code and fixes the symlink.
+  DESC
+  task :default do
+    transaction do
+      update_code
+      symlink
+    end
+  end
+
+  task :update_code, :except =&gt; { :no_release =&gt; true } do
+    on_rollback { run "rm -rf #{release_path}; true" }
+    strategy.deploy!
+  end
+
+  desc "Set config file"
+  task :config_file do
+    run "rm #{release_path}/cms/config/db.php"
+    run "cp #{release_path}/cms/config/db.php.dist #{release_path}/anchor/config/db.php"
+    run "rm #{release_path}/cms/config/db.php.dist"
+  end
+end</code></pre>
+<p>Nous allons ensuite nous occuper de la fonction qui va migrer votre base de données vers la base de données distante. Cette fonction est très simple : elle va créer un Dump dans le répertoire <strong>dump/</strong> (qu'il faudra préalablement créer) avec la date extacte afin d'avoir un fichier unique, puis va l'envoyer via SSH sur le MYSQL de votre serveur. J'ai pris le parti de ne pas supprimer les Dumps afin de garder un versionnement de ma DB, mais libre à vous de les supprimer. Dans tous les cas, je vous conseille de ne pas les commiter sur votre repo Git.</p>
+<pre><code class="language-ruby">namespace :db do
+  desc "Clone local DB to remote"
+  task :migrate do
+    system "mysqldump -u #{local_db_user} -B #{local_db} &gt; dump/#{dump_name}"
+    system "ssh -C #{user}@#{domain} mysql -u #{dbuser} --password=#{dbpassword} #{application_db} &lt; dump/#{dump_name}"
+  end
+end</code></pre>
+<p>Pour en finir avec <strong>deploy.rb</strong>, il faut encore définir quelles fonctions vont être executé, et dans quel ordre.</p>
+<pre><code class="language-ruby">#En premier nous allons migrer la base de données
+before "deploy:update_code", "db:migrate"
+
+#Puis après l'envoi des fichiers, installer le fichier de config
+after "deploy:update_code", "deploy:config_file"
+
+#Pour finir, supprimer les veilles releases selon -&gt; set :keep_releases
+after "deploy:update_code", "deploy:cleanup"</code></pre>
+<h2>Enfin le déploiement !</h2>
+<p>Maintenant que la recette est écrite, il ne reste plus qu'à déployer. Au premier déploiement et pour créer les différents répertoires:</p>
+<pre><code class="language-shell">$ cap deploy:setup</code></pre>
+<p>Ensuite la commande magique pour chaque mise à jour :</p>
+<pre><code class="language-shell">$ cap deploy:setup</code></pre>
+<p>Et selon ma recette, si vous souhaitez seulement migrer la base de données:</p>
+<pre><code class="language-shell">$ cap db:migrate</code></pre>
+<p>Un problème ?</p>
+<pre><code class="language-shell">$ cap deploy:rollback</code></pre>
+<h2>Hum... le site ne marche pas !</h2>
+<p>Et c'est normal, car comme je vous l'ai expliqué plus haut, il vous faut encore paramétrer le serveur pour qu'il pointe sur <strong>current</strong> afin d'exécuter la bonne release. Donc pour cela, créez un <strong>.htaccess</strong> à la racine:</p>
+<pre><code class="language-shell">&lt;IfModule mod_rewrite.c&gt;
+    RewriteEngine on
+    RewriteCond %{REQUEST_URI} !^/current
+    RewriteRule ^(.*)$ /current/$1 [L]
+&lt;/IfModule&gt;</code></pre>
+<h2>Conclusion</h2>
+<p>Capistrano est <strong>LA</strong> solution qui simplifiera votre vie et dont vous ne pourrez plus vous passer. Malgré les prérequis nécessaires, c'est un outil qui se prend vite en main et qui, malgré le temps d'apprentissage, vous fera gagner un temps considérable dans tous vos projets.</p>
+<p>N'hésitez pas si vous avez une question et pour ceux qui souhaiterais en savoir plus:<br />
+<a href="https://github.com/capistrano/capistrano/wiki">Le Wiki officiel</a><br />
+<a href="http://capifony.org/">Pour Symfony2</a><br />
+<a href="http://ryanflorence.com/deploying-with-capistrano-without-rails/">Un excellent article</a></p>
+        </p>
+                  <hr>
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+              /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+              var disqus_shortname = 'yago-io'; // required: replace example with your forum shortname
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+    </div>
+  </article>
+</div>  
+              <footer>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <hr>                <div class="spacer spacer-xs"></div>
+                <h2 class="h4">Let's keep in touch</h2>
+                <div class="spacer spacer-sm"></div>
+                <a href="https://twitter.com/Yago_0" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </a>
+                <a href="https://github.com/Yago/" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </a>
+                <a href="http://ch.linkedin.com/pub/yann-gouffon/47/9a0/9bb/" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                </a>
+                <a href="http://instagram.com/yago_0" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                </a>
+                <a href="https://plus.google.com/+YannGouffon/" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                </a>
+                <a href="mailto:hello@yago.io" class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </a>
+                <div class="spacer spacer-xl"></div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      
+    </div>
+
+    <div class="sb-slidebar sb-right" aria-hidden="true">
+      <ul class="nav navbar-nav">
+        <li><a href="../index.html" title="Home">Home</a></li>
+        <li><a href="../projects.html" title="Projects">Projects</a></li>
+        <li class="active"><a href="../blog.html" title="Blog">Blog</a></li>
+      </ul>
+    </div>
+
+    <script src="../themes/yago/build/js/vendors.min.js"></script>
+    <script src="../themes/yago/build/js/main.js"></script>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-41124823-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+    <script type="text/javascript">
+      var FHChat = {product_id: "e62b17d38605"};
+      FHChat.properties={};FHChat.set=function(key,data){this.properties[key]=data};FHChat.customAttributes=[];FHChat.sendCustomAttributes=function(data){this.customAttributes.push(data)};!function(){var a,b;return b=document.createElement("script"),a=document.getElementsByTagName("script")[0],b.src="https://chat-client-js.firehoseapp.com/chat-min.js",b.async=!0,a.parentNode.insertBefore(b,a)}();
+
+      var fchatChecker = setInterval(function(){
+        var $fchat = $('#fchat');
+        if($('#fchat').length > 0){
+          setTimeout(function(){
+            $('#fchat-header-label').html('Envie de discuter ?');
+            $('#fchat-message').attr('placeholder', 'Ton message');
+            $('#welcome-message').html('Pour taper un petit brin de causette. À utiliser sans modération !');
+          }, 500);
+          clearInterval(fchatChecker);
+        }
+      }, 100);
+    </script>
+
+    <script type="text/javascript">
+      (function($){
+        $(document).ready(function(){
+          emojify.setConfig({
+              img_dir          : '/themes/yago/build/img/emoji',
+              ignore_emoticons : true
+          });
+          emojify.run();
+        });
+      }(jQuery));
+    </script>
+      </body>
+</html>
